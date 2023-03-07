@@ -1,22 +1,15 @@
 openapi: '3.0.1'
 info:
   description: |
-    The NOX API is  RESTful API that allows for interaction with the NOX manager from a web browser,
-    command line tool like cURL or any script or program that can make web requests. The NOX WUI relies on this
-    heavily the goal is to accommodate complete remote management of the NOX infrastructure via the NOX WUI.
-    Use the NOX API to easily perform everyday actions like adding an agent, restarting the manager(s) or agent(s)
-    or looking up syscheck details.
+    The NOX API is  RESTful API that allows for interaction with the NOX Infrastructure.
+    Use the NOX API to easily perform all the user actions, and provide fast, secure access to the NOX Infrastructure.
 
     # Authentication
-
     NOX API endpoints require authentication in order to be used. Therefore, all calls must include a JSON Web Token.
     JWT is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting
-    information between parties as a JSON object. Perform a call with `basicAuth` to `GET /security/user/authenticate`
-    and obtain a JWT token in order to run any endpoint.
+    information between parties as a JSON object.
 
-    JWT tokens have a default duration of 900 seconds. To change this value, you must perform a call with a valid
-    JWT token to `PUT /security/config`. After this change, you will need to get a new JWT token as all previously
-    issued tokens are revoked when any change is performed on security configuration.
+    JWT tokens have a default duration of 900 seconds.
 
     Login with USER and PASSWORD:
 
@@ -40,7 +33,7 @@ info:
 
     <SecurityDefinitions />
 
-  version: '4.3.10'
+  version: '2.5.0'
   x-revision: '1001'
   title: 'NOX API REST'
   license:
@@ -556,7 +549,7 @@ components:
             detail: "Permission denied: Resource type: *:*"
             remediation: "Please, make sure you have permissions to execute the current request. For more information
             on how to set up permissions, please visit
-            https://wiki.cy-be.net/"
+            https://wiki.cy-be.it/"
             error: 4000
             dapi_errors:
               unknown-node:
@@ -623,7 +616,7 @@ components:
             title: "NOX Error"
             detail: "Maximum number of requests per minute reached"
             remediation: "This limit can be changed in api.yaml file. More information here:
-            https://wiki.cy-be.net/"
+            https://wiki.cy-be.it/"
             code: 6001
 
     ResourceNotFoundResponse:
@@ -636,7 +629,7 @@ components:
             title: "Resource Not Found"
             detail: "The group does not exist"
             remediation: "Please, use `GET /groups` to find all available groups:
-            https://wiki.cy-be.net/"
+            https://wiki.cy-be.it/"
             code: 1710
             dapi_errors:
               unknown-node:
@@ -2006,7 +1999,7 @@ components:
           $ref: '#/components/schemas/DaemonStatus'
         nox-csyslogd:
           $ref: '#/components/schemas/DaemonStatus'
-        wazuh-dbd:
+        nox-dbd:
           $ref: '#/components/schemas/DaemonStatus'
         nox-execd:
           $ref: '#/components/schemas/DaemonStatus'
@@ -2026,9 +2019,9 @@ components:
           $ref: '#/components/schemas/DaemonStatus'
         nox-apid:
           $ref: '#/components/schemas/DaemonStatus'
-        wazuh-clusterd:
+        nox-clusterd:
           $ref: '#/components/schemas/DaemonStatus'
-        wazuh-db:
+        nox-db:
           $ref: '#/components/schemas/DaemonStatus'
         nox-modulesd:
           $ref: '#/components/schemas/DaemonStatus'
@@ -2286,7 +2279,7 @@ components:
           type: number
           format: float
           description: "Same as `alerts_written` but focusing in [FTS alerts]
-          (https://wiki.cy-be.net/
+          (https://wiki.cy-be.it/
           #fts)"
         hostinfo_edps:
           type: number
@@ -2529,7 +2522,7 @@ components:
             $ref: '#/components/schemas/LogSummary'
           nox-csyslogd:
             $ref: '#/components/schemas/LogSummary'
-          wazuh-dbd:
+          nox-dbd:
             $ref: '#/components/schemas/LogSummary'
           nox-execd:
             $ref: '#/components/schemas/LogSummary'
@@ -2551,7 +2544,7 @@ components:
             $ref: '#/components/schemas/LogSummary'
           sca:
             $ref: '#/components/schemas/LogSummary'
-          wazuh-db:
+          nox-db:
             $ref: '#/components/schemas/LogSummary'
           nox-modulesd:
             $ref: '#/components/schemas/LogSummary'
@@ -4705,7 +4698,7 @@ components:
         - nox-analysisd
         - nox-authd
         - nox-csyslogd
-        - wazuh-dbd
+        - nox-dbd
         - nox-execd
         - nox-integratord
         - nox-maild
@@ -4716,7 +4709,7 @@ components:
         - nox-rootcheck
         - nox-syscheckd
         - sca
-        - wazuh-db
+        - nox-db
         - nox-modulesd
         - nox-modulesd:agent-key-polling
         - nox-modulesd:aws-s3
@@ -8348,7 +8341,7 @@ paths:
                       nox-analysisd: running
                       nox-authd: stopped
                       nox-csyslogd: stopped
-                      wazuh-dbd: stopped
+                      nox-dbd: stopped
                       nox-monitord: running
                       nox-execd: running
                       nox-integratord: stopped
@@ -8358,8 +8351,8 @@ paths:
                       nox-reportd: stopped
                       nox-syscheckd: running
                       nox-apid: running
-                      wazuh-clusterd: running
-                      wazuh-db: running
+                      nox-clusterd: running
+                      nox-db: running
                       nox-modulesd: running
                   total_affected_items: 1
                   total_failed_items: 0
@@ -9356,7 +9349,7 @@ paths:
               example:
                 data:
                   affected_items:
-                    - wazuh-db:
+                    - nox-db:
                         all: 356
                         info: 0
                         error: 0
@@ -9957,7 +9950,7 @@ paths:
                       nox-analysisd: "running"
                       nox-authd: "running"
                       nox-csyslogd: "stopped"
-                      wazuh-dbd: "stopped"
+                      nox-dbd: "stopped"
                       nox-monitor": "running"
                       nox-execd: "running"
                       nox-integratord: "stopped"
@@ -9966,9 +9959,9 @@ paths:
                       nox-remoted: "running"
                       nox-reportd: "stopped"
                       nox-syscheckd: "running"
-                      wazuh-clusterd: "running"
+                      nox-clusterd: "running"
                       nox-modulesd: "running"
-                      wazuh-db: "running"
+                      nox-db: "running"
                       nox-apid: "running"
                   total_affected_items: 1
                   total_failed_items: 0
@@ -10761,7 +10754,7 @@ paths:
                         debug: 0
                         error: 0
                         warning: 0
-                    - wazuh-db:
+                    - nox-db:
                         info: 1
                         all: 4
                         critical: 0
@@ -16967,4 +16960,4 @@ paths:
 
 externalDocs:
   description: "Find more about NOX API usage"
-  url: 'https://wiki.cy-be.net/'
+  url: 'https://wiki.cy-be.it/'
