@@ -40,11 +40,11 @@ info:
 
     <SecurityDefinitions />
 
-  version: '4.3.10'
+  version: '2.5'
   x-revision: '1001'
   title: 'NOX API REST'
   license:
-    name: 'proprietary'
+    name: 'GPLv3'
     url: 'https://cy-be.it'
 
 servers:
