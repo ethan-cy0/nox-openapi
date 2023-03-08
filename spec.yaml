@@ -1215,7 +1215,7 @@ components:
               items:
                   $ref: '#/components/schemas/ClusterNode'
 
-    AllItemsResponseWazuhLogs:
+    AllItemsResponseNOXLogs:
       allOf:
         - $ref: '#/components/schemas/AllItemsResponse'
         - type: object
@@ -1226,7 +1226,7 @@ components:
               type: array
               description: "Items that successfully applied the API call action"
               items:
-                  $ref: '#/components/schemas/WazuhLogs'
+                  $ref: '#/components/schemas/NOXLogs'
 
     AllItemsResponseValidationStatus:
       allOf:
@@ -1241,7 +1241,7 @@ components:
               items:
                   $ref: '#/components/schemas/ValidationStatus'
 
-    AllItemsResponseWazuhStats:
+    AllItemsResponseNOXStats:
       allOf:
         - type: object
           required:
@@ -1252,11 +1252,11 @@ components:
               description: "Items that successfully applied the API call action"
               items:
                 anyOf:
-                  - $ref: '#/components/schemas/WazuhStats'
-                  - $ref: '#/components/schemas/WazuhHourlyStats'
-                  - $ref: '#/components/schemas/WazuhWeeklyStats'
-                  - $ref: '#/components/schemas/WazuhAnalysisdStats'
-                  - $ref: '#/components/schemas/WazuhRemotedStats'
+                  - $ref: '#/components/schemas/NOXStats'
+                  - $ref: '#/components/schemas/NOXHourlyStats'
+                  - $ref: '#/components/schemas/NOXWeeklyStats'
+                  - $ref: '#/components/schemas/NOXAnalysisdStats'
+                  - $ref: '#/components/schemas/NOXRemotedStats'
         - $ref: '#/components/schemas/AllItemsResponse'
 
     BasicInfo:
@@ -1988,7 +1988,7 @@ components:
           description: "User's JWT token"
 
     # Cluster and manager models
-    WazuhDaemonsStatus:
+    NOXDaemonsStatus:
       type: object
       properties:
         nox-agentlessd:
@@ -2026,7 +2026,7 @@ components:
         nox-modulesd:
           $ref: '#/components/schemas/DaemonStatus'
 
-    WazuhInfo:
+    NOXInfo:
       type: object
       properties:
         path:
@@ -2057,7 +2057,7 @@ components:
         tz_name:
           type: string
 
-    WazuhManagerConfiguration:
+    NOXManagerConfiguration:
       type: object
       properties:
         active-response:
@@ -2119,7 +2119,7 @@ components:
           items:
             type: object
 
-        #Wodle sections inside WazuhConfiguration(ossec.conf)
+        #Wodle sections inside NOXConfiguration(ossec.conf)
         agent-key-polling:
           type: object
         aws-s3:
@@ -2137,7 +2137,7 @@ components:
         syscollector:
           type: object
 
-    WazuhStats:
+    NOXStats:
       type: object
       items:
         type: object
@@ -2182,7 +2182,7 @@ components:
             format: int32
             description: "Number of alerts raised during the specified hour"
 
-    WazuhHourlyStats:
+    NOXHourlyStats:
       type: object
       properties:
         averages:
@@ -2196,25 +2196,25 @@ components:
           type: integer
           format: int32
 
-    WazuhWeeklyStats:
+    NOXWeeklyStats:
       type: object
       properties:
         Sun:
-          $ref: '#/components/schemas/WazuhHourlyStats'
+          $ref: '#/components/schemas/NOXHourlyStats'
         Mon:
-          $ref: '#/components/schemas/WazuhHourlyStats'
+          $ref: '#/components/schemas/NOXHourlyStats'
         Tue:
-          $ref: '#/components/schemas/WazuhHourlyStats'
+          $ref: '#/components/schemas/NOXHourlyStats'
         Wed:
-          $ref: '#/components/schemas/WazuhHourlyStats'
+          $ref: '#/components/schemas/NOXHourlyStats'
         Thu:
-          $ref: '#/components/schemas/WazuhHourlyStats'
+          $ref: '#/components/schemas/NOXHourlyStats'
         Fri:
-          $ref: '#/components/schemas/WazuhHourlyStats'
+          $ref: '#/components/schemas/NOXHourlyStats'
         Sat:
-          $ref: '#/components/schemas/WazuhHourlyStats'
+          $ref: '#/components/schemas/NOXHourlyStats'
 
-    WazuhAnalysisdStats:
+    NOXAnalysisdStats:
       type: object
       properties:
         alerts_queue_size:
@@ -2409,7 +2409,7 @@ components:
           format: float
           description: "Same as `syscheck_queue_usage` but for Windows events"
 
-    WazuhRemotedStats:
+    NOXRemotedStats:
       type: object
       properties:
         ctrl_msg_count:
@@ -2449,7 +2449,7 @@ components:
           format: float
           description: "Total queue size to store events from agents"
 
-    WazuhLogs:
+    NOXLogs:
       type: object
       properties:
         description:
@@ -2511,7 +2511,7 @@ components:
           format: int32
           minimum: 0
 
-    WazuhLogsSummary:
+    NOXLogsSummary:
       type: object
       properties:
           nox-agentlessd:
@@ -8333,7 +8333,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/WazuhDaemonsStatus'
+                      $ref: '#/components/schemas/NOXDaemonsStatus'
               example:
                 data:
                   affected_items:
@@ -8395,7 +8395,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/WazuhInfo'
+                      $ref: '#/components/schemas/NOXInfo'
               example:
                 data:
                   affected_items:
@@ -8450,7 +8450,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/WazuhManagerConfiguration'
+                      $ref: '#/components/schemas/NOXManagerConfiguration'
               example:
                 data:
                   affected_items:
@@ -8749,7 +8749,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/AllItemsResponseWazuhStats'
+                      $ref: '#/components/schemas/AllItemsResponseNOXStats'
               example:
                 data:
                   affected_items:
@@ -8833,7 +8833,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/AllItemsResponseWazuhStats'
+                      $ref: '#/components/schemas/AllItemsResponseNOXStats'
               example:
                 data:
                   affected_items:
@@ -8904,7 +8904,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/AllItemsResponseWazuhStats'
+                      $ref: '#/components/schemas/AllItemsResponseNOXStats'
               example:
                 data:
                   affected_items:
@@ -9137,7 +9137,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/AllItemsResponseWazuhStats'
+                      $ref: '#/components/schemas/AllItemsResponseNOXStats'
               example:
                 data:
                   affected_items:
@@ -9227,7 +9227,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/AllItemsResponseWazuhStats'
+                      $ref: '#/components/schemas/AllItemsResponseNOXStats'
               example:
                 data:
                   affected_items:
@@ -9288,7 +9288,7 @@ paths:
                   - type: object
                     properties:
                       data:
-                        $ref: '#/components/schemas/AllItemsResponseWazuhLogs'
+                        $ref: '#/components/schemas/AllItemsResponseNOXLogs'
               example:
                 data:
                   affected_items:
@@ -9345,7 +9345,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/WazuhLogsSummary'
+                      $ref: '#/components/schemas/NOXLogsSummary'
               example:
                 data:
                   affected_items:
@@ -9942,7 +9942,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/WazuhDaemonsStatus'
+                      $ref: '#/components/schemas/NOXDaemonsStatus'
               example:
                 data:
                   affected_items:
@@ -10002,7 +10002,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/WazuhInfo'
+                      $ref: '#/components/schemas/NOXInfo'
               example:
                 data:
                   affected_items:
@@ -10056,7 +10056,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/WazuhManagerConfiguration'
+                      $ref: '#/components/schemas/NOXManagerConfiguration'
               example:
                 data:
                   affected_items:
@@ -10178,7 +10178,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/AllItemsResponseWazuhStats'
+                      $ref: '#/components/schemas/AllItemsResponseNOXStats'
               example:
                 data:
                   affected_items:
@@ -10246,7 +10246,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/AllItemsResponseWazuhStats'
+                      $ref: '#/components/schemas/AllItemsResponseNOXStats'
               example:
                 data:
                   affected_items:
@@ -10314,7 +10314,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/AllItemsResponseWazuhStats'
+                      $ref: '#/components/schemas/AllItemsResponseNOXStats'
               example:
                 data:
                   affected_items:
@@ -10544,7 +10544,7 @@ paths:
                   - type: object
                     properties:
                       data:
-                        $ref: '#/components/schemas/AllItemsResponseWazuhStats'
+                        $ref: '#/components/schemas/AllItemsResponseNOXStats'
               example:
                 data:
                   affected_items:
@@ -10631,7 +10631,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/AllItemsResponseWazuhStats'
+                      $ref: '#/components/schemas/AllItemsResponseNOXStats'
               example:
                 data:
                   affected_items:
@@ -10688,7 +10688,7 @@ paths:
                   - type: object
                     properties:
                       data:
-                        $ref: '#/components/schemas/AllItemsResponseWazuhLogs'
+                        $ref: '#/components/schemas/AllItemsResponseNOXLogs'
               example:
                 data:
                   affected_items:
@@ -10743,7 +10743,7 @@ paths:
                 - type: object
                   properties:
                     data:
-                      $ref: '#/components/schemas/WazuhLogsSummary'
+                      $ref: '#/components/schemas/NOXLogsSummary'
               example:
                 data:
                   affected_items:
@@ -12790,11 +12790,11 @@ paths:
                           order: error
                         - "@name": agent-upgrade
                           parent: nox
-                          regex: started.\sCurrent\sversion:\sWazuh\s(\.+)$
+                          regex: started.\sCurrent\sversion:\sNOX\s(\.+)$
                           order: agent.cur_version
                         - "@name": agent-upgrade
                           parent: nox
-                          regex: succeeded.\sNew\sversion:\sWazuh\s(\.+)$
+                          regex: succeeded.\sNew\sversion:\sNOX\s(\.+)$
                           order: agent.new_version
                         - "@name": agent-restart
                           parent: nox
@@ -12848,12 +12848,12 @@ paths:
                 </decoder>
                 <decoder name="agent-upgrade">
                   <parent>nox</parent>
-                  <regex>started.\sCurrent\sversion:\sWazuh\s(\.+)$</regex>
+                  <regex>started.\sCurrent\sversion:\sNOX\s(\.+)$</regex>
                   <order>agent.cur_version</order>
                 </decoder>
                 <decoder name="agent-upgrade">
                   <parent>nox</parent>
-                  <regex>succeeded.\sNew\sversion:\sWazuh\s(\.+)$</regex>
+                  <regex>succeeded.\sNew\sversion:\sNOX\s(\.+)$</regex>
                   <order>agent.new_version</order>
                 </decoder>
                 <decoder name="agent-restart">
@@ -15339,7 +15339,7 @@ paths:
                   data:
                     affected_items:
                       - id: 100
-                        username: TestWazuh
+                        username: TestNOX
                         allow_run_as: false
                         roles: []
                     total_affected_items: 1
@@ -15604,7 +15604,7 @@ paths:
                 data:
                   affected_items:
                     - id: 100
-                      name: TestWazuhRole
+                      name: TestNOXRole
                       policies: []
                       users: []
                       rules: []
@@ -15847,7 +15847,7 @@ paths:
                 data:
                   affected_items:
                     - id: 100
-                      name: "TestWazuhRule"
+                      name: "TestNOXRule"
                       rule:
                         MATCH:
                           definition: "test_rule"
@@ -15901,7 +15901,7 @@ paths:
                 data:
                   affected_items:
                     - id: 100
-                      name: "TestWazuhRule"
+                      name: "TestNOXRule"
                       rule:
                         MATCH:
                           definition: "test_rule"
@@ -15961,7 +15961,7 @@ paths:
                   data:
                     affected_items:
                       - id: 100
-                        name: "TestWazuhRule"
+                        name: "TestNOXRule"
                         rule:
                           MATCH:
                             definition: "test_rule_updated"
@@ -16104,7 +16104,7 @@ paths:
                 data:
                   affected_items:
                     - id: 100
-                      name: "TestWazuhPolicy"
+                      name: "TestNOXPolicy"
                       policy:
                         actions:
                           - "security:delete"
@@ -16161,7 +16161,7 @@ paths:
                 data:
                   affected_items:
                     - id: 100
-                      name: "TestWazuhPolicy"
+                      name: "TestNOXPolicy"
                       policy:
                         actions:
                           - "security:delete"
@@ -16229,7 +16229,7 @@ paths:
                 data:
                   affected_items:
                     - id: 100
-                      name: TestWazuhPolicy
+                      name: TestNOXPolicy
                       policy:
                         actions:
                           - "security:delete"
@@ -16289,14 +16289,14 @@ paths:
                 data:
                   affected_items:
                     - id: 100
-                      username: TestWazuhUsername
+                      username: TestNOXUsername
                       allow_run_as: false
                       roles:
                         - 1
                   total_affected_items: 1
                   total_failed_items: 0
                   failed_items: []
-                message: "All roles were linked to TestWazuhUsername"
+                message: "All roles were linked to TestNOXUsername"
                 error: 0
         '400':
           $ref: '#/components/responses/ResponseError'
@@ -16338,13 +16338,13 @@ paths:
                 data:
                   affected_items:
                     - id: 100
-                      username: TestWazuhUsername
+                      username: TestNOXUsername
                       allow_run_as: false
                       roles: []
                   total_affected_items: 1
                   total_failed_items: 0
                   failed_items: []
-                message: "All roles were unlinked from user TestWazuhUsername"
+                message: "All roles were unlinked from user TestNOXUsername"
                 error: 0
         '400':
           $ref: '#/components/responses/ResponseError'
@@ -16384,7 +16384,7 @@ paths:
                 data:
                   affected_items:
                     - id: 100
-                      name: TestWazuhRole
+                      name: TestNOXRole
                       policies:
                         - 100
                       users: []
@@ -16431,7 +16431,7 @@ paths:
                 data:
                   affected_items:
                     - id: 100
-                      name: TestWazuhRole
+                      name: TestNOXRole
                       policies: []
                       users: []
                       rules: []
@@ -16477,7 +16477,7 @@ paths:
                 data:
                   affected_items:
                     - id: 100
-                      name: TestWazuhRole
+                      name: TestNOXRole
                       policies: []
                       users: []
                       rules:
@@ -16524,7 +16524,7 @@ paths:
                 data:
                   affected_items:
                     - id: 100
-                      name: TestWazuhRole
+                      name: TestNOXRole
                       policies: []
                       users: []
                       rules: []
